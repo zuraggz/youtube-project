@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PokemonReviewApp;  
-using PokemonReviewApp.Data;  // საჭირო ფუნქციებისვის შემოგვაქ ესენი
+using PokemonReviewApp.Data;
+using PokemonReviewApp.Interfaces;
+using PokemonReviewApp.Repository;  // საჭირო ფუნქციებისვის შემოგვაქ ესენი
 
 var builder = WebApplication.CreateBuilder(args); // ამთით იწყება აპის შენება  მის შიგნითაა:
                                                   // Configuration(jason file), Deoendency injection container
@@ -18,6 +20,7 @@ builder.Services.AddDbContext<DataContext>(options =>
 }); //ეუბნება აპპს დაუკავშირდეს SQL სერვერს რომლის დაკავშირების სახელიც jason file ში DefaultConnection-ია
 
 builder.Services.AddTransient<Seed>(); // seeding ის თემაა რომლიც ვერ გავიგე
+builder.Services.AddScoped<IPokemonRepository, PokemonRepository>();
 var app = builder.Build();
 
 if (args.Length == 1 && args[0].ToLower() == "seeddata")
