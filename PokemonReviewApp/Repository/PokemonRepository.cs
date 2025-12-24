@@ -4,9 +4,10 @@ using PokemonReviewApp.Models;
 
 namespace PokemonReviewApp.Repository
 {
-    public class PokemonRepository : IPokemonRepository
+    public class PokemonRepository : IPokemonRepository // ინტერფეისი გავხადეთ მის მშობლად
     {
-        private readonly DataContext _context;
+        private readonly DataContext _context;  // readonly-თი ერთხელ ანიჭებ ცვლადს მნიშვნელობას და შემდეგ ვეღარ ცვლი
+                                                // ამას ვანიჭებთ Database-ის მონაცემებს
         public PokemonRepository(DataContext context)
         {
             _context = context;
